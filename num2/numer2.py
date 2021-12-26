@@ -1,16 +1,27 @@
 with open("input.txt") as numbers:
 	data = numbers.read().splitlines()
 
-data2 = []
+
 
 for i in range(len(data)):
-	data2.append(data[i].split(" "))
+	data[i] = data[i].split(" ")
+
+vertical = 0
+horizontal = 0
+for i in data:
+    if i[0] == "forward":
+        horizontal += int(i[1])
+    elif i[0] == "down":
+        vertical += int(i[1])
+    elif i[0] == "up":
+        vertical -= int(i[1])
+
+print(horizontal * vertical)
 
 vertical = 0
 horizontal = 0
 aim = 0
-
-for i in data2:
+for i in data:
 	if i[0] == "forward":
 		if aim == 0:
 			horizontal += int(i[1])
@@ -22,6 +33,4 @@ for i in data2:
 	else:
 		aim -= int(i[1])
 
-
-print(horizontal, vertical)
 print(horizontal * vertical)
